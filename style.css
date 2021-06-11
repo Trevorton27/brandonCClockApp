@@ -4,16 +4,29 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: gray;
+  color: #fff;
+}
 ul {
   list-style: none;
 }
 
-h2 {
+h1 {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
+  font-size: 3rem;
 }
 
+.timeOne {
+  font-size: 5rem;
+  padding: 3rem 0 3rem 0;
+}
+
+.timeTwo {
+  font-size: 3.5rem;
+}
 
 .clock {
   display: flex;
@@ -21,6 +34,4 @@ h2 {
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
-  font-size: 2rem;
 }
-

@@ -1,32 +1,34 @@
 'use strict';
-//  new Date();
 
+function showTimeAndDate() {
+  
+  let dateObj = new Date();
+  let y = '0';
 
-
-let dateObj = new Date();
-
-// Hours
-let hour = dateObj.getHours() - 12;
-let y = '0';
+  // Hours
+let hour = dateObj.getHours();
 if (hour < 10) {
- hour =  y + hour;
-}
+  hour =  y + hour;
+ }
+ if (hour > 12) {
+   hour = hour - 12;
+ }
+ 
+
 // Minutes
 let minutes = dateObj.getMinutes();
 if (minutes < 10) {
   minutes =  y + minutes;
  }
-// Seconds
+
+ // Seconds
 let seconds = dateObj.getSeconds();
 if (seconds < 10) {
   seconds =  y + seconds;
  }
 
-
-
-// Current Time
+ // Current Time
 const currentTime = `${hour}:${minutes}:${seconds}`;
-
 
 // AM PM Calculator
 let ampm = dateObj.getHours();
@@ -46,7 +48,6 @@ const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 let day = weekDays[weekDay];
 
 
-
 // Month
 // let month = dateObj.toLocaleString("Default", {month: "long"});
 let dayOfMonth = dateObj.getMonth();
@@ -58,59 +59,35 @@ let month = months[dayOfMonth];
 // Numerical Day
 let numericalDate = dateObj.getDate();
 
-const numDates = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '13th', '14th', '15th', '16th', '17th', '18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th', '31st'];
 
-numericalDate -= 1;
 
-let date = numDates[numericalDate];
+if(numericalDate == 1 || numericalDate == 21 || numericalDate == 31) {
+   numericalDate = numericalDate + "st";
+} else if (numericalDate == 2 || numericalDate == 22 ) {
+   numericalDate = numericalDate + "nd";
+}  else if (numericalDate == 3 || numericalDate == 23) {
+  numericalDate = numericalDate + "rd";
+} else  {
+  numericalDate = numericalDate + "th";
+}
+
 
 // Year
 let currentYear = dateObj.getFullYear();
 
 
-// Adding to site
 
-const clock = document.querySelector('.clock');
-let digTime = document.createElement('li');
-let mp = document.createElement('li');
-let dayMonth = document.createElement('li');
-let dayYear = document.createElement('li');
+// Adding to page
+let timeOne = document.querySelector('.timeOne');
+let timeTwo = document.querySelector('.timeTwo')
 
-digTime.innerHTML = `${currentTime}`;
-mp.innerHTML = `${ampm}`;
-dayMonth.innerHTML = `${day}, ${month}`;
-dayYear.innerHTML = `${date}, ${currentYear}`;
+timeOne.textContent = `${hour}:${minutes}:${seconds} ${ampm}`;
 
-clock.appendChild(digTime);
-clock.appendChild(mp);
-clock.appendChild(dayMonth);
-clock.appendChild(dayYear);
+timeTwo.textContent = `${day}, ${month} ${numericalDate} ${currentYear}`
 
+}
 
-
-
-
-// clock.innerHTML = `${currentTime} 
-// ${ampm}
-// ${day}, ${month} 
-// ${date} ${currentYear}`;
-
-
-// currentTime 
-// ampm
-// day
-// month
-// date
-// currentYear
-
-// console.log(currentYear);
-
-
-
-
-
-
-
+setInterval(showTimeAndDate, 1000);
 
 
 
